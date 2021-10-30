@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:custom_marker_icon/custom_marker_icon.dart';
+import 'package:custom_marker_icon_2/custom_marker_icon.dart';
 
 void main() {
   runApp(
@@ -30,17 +30,18 @@ class _CustomMarkerIconExampleState extends State<CustomMarkerIconExample> {
   Set<Marker> _markers = {};
 
   void _addMarkers() async {
-    BitmapDescriptor markerIcon = await CustomMarkerIcon.fromIcon(
+    BitmapDescriptor? markerIcon = await CustomMarkerIcon.fromIcon(
       Icons.directions_walk,
       Colors.blue,
       100,
     );
+
     setState(() {
       _markers.add(
         Marker(
           markerId: MarkerId("marker_id"),
           position: _latLng,
-          icon: markerIcon,
+          icon: markerIcon ?? BitmapDescriptor.defaultMarker,
         ),
       );
     });
